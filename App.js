@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import NavegacionPrincipal from './src/navigation/NavegacionPrincipal'; 
 
 export default function App() {
   return (
-    <View>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <NavigationContainer>
+      <NavegacionPrincipal></NavegacionPrincipal> 
+    </NavigationContainer>
   );
 }
