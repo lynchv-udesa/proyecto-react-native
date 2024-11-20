@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import firebase from 'firebase'
 import { db, auth } from '../firebase/config'
+import { AntDesign } from '@expo/vector-icons';
 
 export default class Posts extends Component {
     constructor(props){
@@ -39,27 +40,55 @@ export default class Posts extends Component {
 
     render() {
     return (
-      <View>
-        <Text> {this.props.item.data.owner} </Text>
-        <Text> {this.props.item.data.username} </Text>
-        <Text> {this.props.item.data.post} </Text>
+      <View style={styles.container}>
+        
+        <Text style={styles.owner}> {this.props.item.data.owner} </Text>
+        <Text style={styles.content}> {this.props.item.data.username} </Text>
+        <Text style={styles.content}> {this.props.item.data.post} </Text>
+        
         {
             this.state.like 
             ?
             <TouchableOpacity
             onPress={ () => this.sacarLike(this.props.item.id)}
-
+            style={styles.heartButton}
             >
-                <Text> Sacar Like </Text>
+                <AntDesign name="heart" size={30} color="red" />
+
             </TouchableOpacity>
             :
             <TouchableOpacity
             onPress={ () => this.darLike(this.props.item.id)}
+            style={styles.heartButton}
             >
-                <Text> Like </Text>
+                <AntDesign name="hearto" size={30} color="gray" />
             </TouchableOpacity>
         }
+
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 10,
+        padding: 10,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 5,
+    },
+    owner: {
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginBottom: 5,
+    },
+    content: {
+        fontSize: 14,
+        marginBottom: 10,
+    },
+    heartButton: {
+        alignSelf: 'flex-start',
+        marginTop: 10,
+    },
+});
