@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import firebase from 'firebase'
 import { db, auth } from '../firebase/config'
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons/AntDesign';
 
 export default class Posts extends Component {
+    
     constructor(props){
         super(props)
         this.state = {
             like: false
         }
     }
+
     darLike(idDocumento){
         db
         .collection('posts')
@@ -24,6 +26,7 @@ export default class Posts extends Component {
             })
         })
     }
+    
     sacarLike(idDocumento){
         db
         .collection('posts')
