@@ -56,7 +56,7 @@ export default class FormularioRegister extends Component {
   render() {
     return (
       <View>
-        <Text>FormularioRegister</Text>
+        <Text style={styles.subtitulo}>FormularioRegister</Text>
         <TextInput
             style={styles.input}
             placeholder='Ingrese su correo'
@@ -91,10 +91,10 @@ export default class FormularioRegister extends Component {
             <TouchableOpacity
             onPress={() => this.submit(this.state.email, this.state.username, this.state.password)}
             >
-            <Text>Registrarse</Text>
+            <Text></Text>
             </TouchableOpacity>
             :
-            <Text>Registrarse</Text>
+            <Text></Text>
         }
       </View>
     )
@@ -103,8 +103,13 @@ export default class FormularioRegister extends Component {
 
 let styles = StyleSheet.create({
     input: {
-        borderWidth: 1,
+        borderWidth: 2,
+        padding: 5,
         borderColor: 'green',
         marginBottom: 10
-    }
+    },
+    subtitulo:{
+        fontStyle: 'italic',
+        padding: 2
+      }
 })

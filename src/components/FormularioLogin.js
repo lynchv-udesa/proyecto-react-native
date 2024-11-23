@@ -51,7 +51,7 @@ export default class FormularioLogin extends Component {
   render() {
     return (
       <View>
-        <Text>FormularioLogin</Text>
+        <Text style={styles.subtitulo}>FormularioLogin</Text>
         <TextInput
             style={styles.input}
             placeholder='Ingrese su correo'
@@ -78,7 +78,6 @@ export default class FormularioLogin extends Component {
         <TouchableOpacity
             onPress={() => this.submit(this.state.email, this.state.password)}
         >
-            <Text>Login</Text>
         </TouchableOpacity>
       </View>
     )
@@ -87,8 +86,13 @@ export default class FormularioLogin extends Component {
 
 let styles = StyleSheet.create({
     input: {
-        borderWidth: 1,
+        borderWidth: 2,
+        padding: 5,
         borderColor: 'green',
         marginBottom: 10
-    }
+    },
+    subtitulo:{
+        fontStyle: 'italic',
+        padding: 2
+      }
 })

@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 import FormularioRegister from '../components/FormularioRegister'
 
@@ -13,13 +13,30 @@ export default class Register extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Register</Text>
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Register</Text>
         <FormularioRegister navigation={this.props.navigation} />
+        <Text>¿Ya estás registrado?</Text>
         <TouchableOpacity onPress={() => this.irALogin()}>
-            <Text>¿Ya estás registrado? Logueate</Text>
+            <Text style={styles.titulo}>Logueate</Text>
         </TouchableOpacity>
       </View>
     )
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+    padding: 10,
+    borderColor: '#ccc',
+    borderWidth: 3,
+    borderRadius: 5,
+    alignItems:'center',
+    backgroundColor: 'beige'
+  },
+  titulo: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 5,
+  },
+})
