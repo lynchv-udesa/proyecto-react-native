@@ -6,70 +6,73 @@ export default class FormularioPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      post: ''
+      post: '',
+      error: ''
     };
   }
-
-  crearPost() {
-    const { username, post } = this.state;
-
-    if (username.length >= 5 && post.length > 0) {
-      const currentUser = auth.currentUser;
-
-      if (currentUser) {
-        const postData = {
-          owner: currentUser.email,
-          createdAt: Date.now(),
-          post: post,
-          username: username
-        };
   
-        console.log('Datos a guardar:', postData);
-  
-        db.collection('posts')
-          .add(postData)
-          .then(() => {
-            console.log('Post guardado con éxito');
-            this.props.navigation.navigate('HomeTabs', {
-              screen: 'Inicio', 
-            });
-          })
-          .catch((err) => console.error('Error al guardar en la base de datos:', err));
-      } else {
-        console.log('No hay un usuario autenticado.');
-      }
-    } else {
-      console.log('El usuario o el post no cumplen con los requisitos.');
+  publicado(){
+    this.setState({post: '', error: ''});
+    console.log('Posteo publicado');
+    this.props.navigation.navigate('Inicio')
+  }
+
+  submit(post) {
+    if(post.length === 0){
+      this.setState({error: 'Debe completar el campo'});
+      return
     }
+    if(post.length < 3){
+      this.setState({error: 'Debe contener mas de 3 caracteres'});
+      return
+    }
+
+    const user = auth.currentUser;
+
+    if (user) {
+      const postData = {
+        owner: user.email,
+        createdAt: Date.now(),
+        post: post,
+        arrLikes: []
+      };
+      console.log('Datos a guardar:', postData);
+
+      db.collection('posts')
+        .add(postData)
+        .then(() => {
+          this.props.navigation.navigate('Inicio');
+          this.publicado
+        })
+        .catch((err) => console.error('Error al guardar en la base de datos:', err));
+    } else {
+      this.setState({error: "Debes estar logueado"});
+    }
+    
   }
 
   render() {
     return (
-      <View>
-        <Text> Crea un Post </Text>
-        <View>
-          <TextInput
-            style={styles.input}
-            keyboardType="default"
-            placeholder="Ingresa tu usuario"
-            onChangeText={(texto) => this.setState({ username: texto })}
-            value={this.state.username}
-          />
+      <View style={styles.container}>
+        <View style={styles.form}>
+
           <TextInput
             style={styles.input}
             keyboardType="default"
             placeholder="¿Qué quieres postear?"
-            onChangeText={(texto) => this.setState({ post: texto })}
+            onChangeText={(texto) => this.setState({ post: texto, error: '' })}
             value={this.state.post}
           />
-          {this.state.username !== '' && this.state.post !== '' ? (
-            <TouchableOpacity onPress={() => this.crearPost()}>
+
+          {this.state.error !== '' && this.state.post !== '' 
+            ? 
+              <TouchableOpacity onPress={() => this.submit(this.state.post)}>
+                <Text style={styles.button}> Postear </Text>
+              </TouchableOpacity>
+            : 
               <Text> Postear </Text>
-            </TouchableOpacity>
-          ) : (
-            <Text> Postear </Text>
-          )}
+          }
+
         </View>
       </View>
     );
