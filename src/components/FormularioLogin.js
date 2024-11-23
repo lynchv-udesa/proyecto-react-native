@@ -50,46 +50,62 @@ export default class FormularioLogin extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.subtitulo}>FormularioLogin</Text>
-        <TextInput
-            style={styles.input}
-            placeholder='Ingrese su correo'
-            keyboardType='email-address'
-            onChangeText={(text) => this.setState({email: text, error: ''})}
-            value={this.state.email}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder='Ingrese su password'
-            keyboardType='default'
-            onChangeText={(text) => this.setState({password: text, error: ''})}
-            value={this.state.password}
-            secureTextEntry={true}
-        />
+      <View style={styles.container}>
+        <View style={styles.form}>
+            <Text style={styles.subtitulo}>FormularioLogin</Text>
+            <TextInput
+                style={styles.input}
+                placeholder='Ingrese su correo'
+                keyboardType='email-address'
+                onChangeText={(text) => this.setState({email: text, error: ''})}
+                value={this.state.email}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder='Ingrese su password'
+                keyboardType='default'
+                onChangeText={(text) => this.setState({password: text, error: ''})}
+                value={this.state.password}
+                secureTextEntry={true}
+            />
 
-        {
-            this.state.error !== ''
-            &&
-            <Text>
-                {this.state.error}
-            </Text>
-        }
-        <TouchableOpacity
-            onPress={() => this.submit(this.state.email, this.state.password)}
-        >
-        </TouchableOpacity>
+            {
+                this.state.error !== ''
+                &&
+                <Text>
+                    {this.state.error}
+                </Text>
+            }
+            <TouchableOpacity
+                onPress={() => this.submit(this.state.email, this.state.password)}
+            >
+                <Text>Login</Text>
+            </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
 let styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    form: {
+        width: '90%',
+        backgroundColor: 'white', 
+        borderWidth: 1, 
+        borderColor: '#bebebe',
+        borderRadius: 8,
+        padding: 50
+    },
     input: {
         borderWidth: 2,
         padding: 5,
         borderColor: 'green',
-        marginBottom: 10
+        marginBottom: 10,
+        width: 160
     },
     subtitulo:{
         fontStyle: 'italic',

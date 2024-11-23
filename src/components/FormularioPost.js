@@ -80,11 +80,24 @@ export default class FormularioPost extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+  form: {
+    width: '90%',
+    backgroundColor: 'white', 
+    borderWidth: 1, 
+    borderColor: '#bebebe',
+    borderRadius: 8,
+    padding: 50
+  },
   input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    marginVertical: 5,
-    borderRadius: 5
-  }
+    borderWidth: 2,
+    padding: 5,
+    borderColor: 'green',
+    marginBottom: 10,
+    width: 160
+  },
 });

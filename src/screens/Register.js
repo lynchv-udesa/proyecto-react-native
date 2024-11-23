@@ -26,13 +26,17 @@ export default class Register extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    padding: 10,
+    marginTop: 150,
+    justifyContent: 'center',
+    alignSelf: 'center', 
     borderColor: '#ccc',
     borderWidth: 3,
     borderRadius: 5,
     alignItems:'center',
-    backgroundColor: 'beige'
+    backgroundColor: 'beige',
+    width: 500,
+    height: 400
+    
   },
   titulo: {
     fontWeight: 'bold',

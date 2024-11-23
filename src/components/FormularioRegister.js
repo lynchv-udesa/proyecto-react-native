@@ -55,58 +55,73 @@ export default class FormularioRegister extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+        <View style={styles.form}>
         <Text style={styles.subtitulo}>FormularioRegister</Text>
-        <TextInput
-            style={styles.input}
-            placeholder='Ingrese su correo'
-            keyboardType='email-address'
-            onChangeText={(text) => this.setState({email: text, error: ''})}
-            value={this.state.email}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder='Ingrese su username'
-            keyboardType='default'
-            onChangeText={(text) => this.setState({username: text, error: ''})}
-            value={this.state.username}
-        />
-        <TextInput
-            style={styles.input}
-            placeholder='Ingrese su password'
-            keyboardType='default'
-            onChangeText={(text) => this.setState({password: text, error: ''})}
-            value={this.state.password}
-            secureTextEntry={true}
-        />
-        {
-            this.state.error !== ''
-            &&
-            <Text>
-                {this.state.error}
-            </Text>
-        }
-        { this.state.email !== '' && this.state.username !== '' && this.state.password !== ''
-            ?        
-            <TouchableOpacity
-            onPress={() => this.submit(this.state.email, this.state.username, this.state.password)}
-            >
-            <Text></Text>
-            </TouchableOpacity>
-            :
-            <Text></Text>
-        }
+            <TextInput
+                style={styles.input}
+                placeholder='Ingrese su correo'
+                keyboardType='email-address'
+                onChangeText={(text) => this.setState({email: text, error: ''})}
+                value={this.state.email}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder='Ingrese su username'
+                keyboardType='default'
+                onChangeText={(text) => this.setState({username: text, error: ''})}
+                value={this.state.username}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder='Ingrese su password'
+                keyboardType='default'
+                onChangeText={(text) => this.setState({password: text, error: ''})}
+                value={this.state.password}
+                secureTextEntry={true}
+            />
+            {
+                this.state.error !== ''
+                &&
+                <Text>
+                    {this.state.error}
+                </Text>
+            }
+            { this.state.email !== '' && this.state.username !== '' && this.state.password !== ''
+                ?        
+                <TouchableOpacity
+                onPress={() => this.submit(this.state.email, this.state.username, this.state.password)}
+                >
+                <Text></Text>
+                </TouchableOpacity>
+                :
+                <Text></Text>
+            }
+        </View>
       </View>
     )
   }
 }
 
 let styles = StyleSheet.create({
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    form: {
+        width: '90%',
+        backgroundColor: 'white', 
+        borderWidth: 1, 
+        borderColor: '#bebebe',
+        borderRadius: 8,
+        padding: 50
+    },
     input: {
         borderWidth: 2,
         padding: 5,
         borderColor: 'green',
-        marginBottom: 10
+        marginBottom: 10,
+        width: 160
     },
     subtitulo:{
         fontStyle: 'italic',
