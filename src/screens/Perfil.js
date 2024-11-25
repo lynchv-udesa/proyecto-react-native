@@ -58,6 +58,10 @@ export default class Perfil extends Component {
 
   logout(){
     auth.signOut()
+    .then(() => {
+      this.props.navigation.navigate('login')
+    })
+    .catch( error => console.log("Error al cerrar sesion: ", error))
   }
 
   render() {
