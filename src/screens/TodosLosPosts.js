@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { db, auth } from '../firebase/config'
 import Posts from '../components/Posts'
 import { FlatList } from 'react-native-web'
+import { StyleSheet } from 'react-native'
 
 export default class TodosLosPosts extends Component {
     
