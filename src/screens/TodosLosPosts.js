@@ -33,7 +33,7 @@ export default class TodosLosPosts extends Component {
     
     render() {
     return (
-      <View>
+      <View style={styles.listPost}>
         <Text> Posts </Text>
         <FlatList
             data={this.state.todosLosPosts}
@@ -44,3 +44,8 @@ export default class TodosLosPosts extends Component {
     )
   }
 }
+const styles = StyleSheet.create({
+    listPost:{
+      flex: 1
+    }
+  })
