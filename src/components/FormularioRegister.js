@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { Component } from 'react'
 import { auth, db } from '../firebase/config'
 
@@ -11,6 +11,15 @@ export default class FormularioRegister extends Component {
             password: '',
             error: ''
         }
+    }
+
+    componentDidMount(){
+        auth
+        .onAuthStateChanged(user => {
+            if(user){
+                this.props.navigation.navigate('anidada')
+            } 
+        })
     }
 
     submit(email, username, password){
@@ -56,8 +65,6 @@ export default class FormularioRegister extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.form}>
-        <Text style={styles.subtitulo}>FormularioRegister</Text>
             <TextInput
                 style={styles.input}
                 placeholder='Ingrese su correo'
@@ -83,21 +90,20 @@ export default class FormularioRegister extends Component {
             {
                 this.state.error !== ''
                 &&
-                <Text>
+                <Text style={styles.error}>
                     {this.state.error}
                 </Text>
             }
             { this.state.email !== '' && this.state.username !== '' && this.state.password !== ''
                 ?        
-                <TouchableOpacity
+                <TouchableOpacity style={styles.baseBoton}
                 onPress={() => this.submit(this.state.email, this.state.username, this.state.password)}
                 >
                 <Text style={styles.boton}>Register</Text>
                 </TouchableOpacity>
                 :
-                <Text style={styles.boton}>Register</Text>
+                <Text style={styles.noboton}>Register</Text>
             }
-        </View>
       </View>
     )
   }
@@ -105,37 +111,50 @@ export default class FormularioRegister extends Component {
 
 let styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    form: {
         width: '90%',
-        backgroundColor: 'white', 
-        borderWidth: 1, 
-        borderColor: '#bebebe',
-        borderRadius: 8,
-        padding: 50
+        justifyContent: 'center',
+        width: '90%',
+        alignItems: 'center',
+        padding: 5, 
+        margin: 5,
     },
+
     input: {
+        width: '90%',
+        backgroundColor: 'white',
+        borderColor: '#ffbae4',
         borderWidth: 2,
         padding: 5,
-        borderColor: 'green',
         marginBottom: 10,
-        width: 160
     },
-    subtitulo:{
-        fontStyle: 'italic',
-        padding: 2
-      },
-    boton:{
-        justifyContent: 'center',
-        alignItems: 'center',
+
+    baseBoton: {
+        width: '70%',
+        borderWidth: 2,
+        padding: 5,
+        marginBottom: 10,
         textAlign: 'center',
-        backgroundColor: 'beige',
-        borderRadius:2,
-        padding:2,
-        margin:2,
-        borderColor:'#ccc',
-        borderWidth:3
+        backgroundColor: '#ffbae4',
+        borderColor: 'white',
+    },
+
+    boton:{
+        textAlign: 'center',
+    },
+
+    noboton:{
+        width: '70%',
+        textAlign: 'center',
+        backgroundColor: '#ccc',
+        borderColor: 'white',
+        borderWidth: 2,
+        padding: 5,
+        marginBottom: 10,
+    },
+
+    error: {
+        color: 'red',
+        marginBottom: 10, 
+        textAlign: 'center',
     }
 })
