@@ -14,9 +14,7 @@ export default class NavegacionPrincipal extends Component {
       <Stack.Navigator>
         <Stack.Screen name='login' component={Login} options={{headerShown: false}} />
         <Stack.Screen name='register' component={Register} options={{headerShown: false}} />
-
         <Stack.Screen name='anidada' component={NavegacionAnidada} options={{headerShown: false}} />
-
       </Stack.Navigator>
     )
   }

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import firebase from 'firebase'
-import { db, auth } from '../firebase/config'
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import firebase from 'firebase';
+import { db, auth } from '../firebase/config';
 import { AntDesign } from '@expo/vector-icons/AntDesign';
 
 export default class Posts extends Component {
@@ -18,7 +18,7 @@ export default class Posts extends Component {
         .collection('posts')
         .doc(idDocumento)
         .update({
-            arrLikes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+            arrLikes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.posts)
         })
         .then( () => {
             this.setState({
@@ -32,7 +32,7 @@ export default class Posts extends Component {
         .collection('posts')
         .doc(idDocumento)
         .update({
-            arrLikes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
+            arrLikes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.posts)
         })
         .then( () => {
             this.setState({
@@ -47,13 +47,13 @@ export default class Posts extends Component {
         
         <Text style={styles.owner}> {this.props.item.data.owner} </Text>
         <Text style={styles.content}> {this.props.item.data.username} </Text>
-        <Text style={styles.content}> {this.props.item.data.post} </Text>
+        <Text style={styles.content}> {this.props.item.data.posts} </Text>
         
         {
             this.state.like 
             ?
             <TouchableOpacity
-            onPress={ () => this.sacarLike(this.props.item.id)}
+            onPress={ () => this.sacarLike(this.props.item.data.id)}
             style={styles.heartButton}
             >
                 <AntDesign name="heart" size={30} color="red" />
