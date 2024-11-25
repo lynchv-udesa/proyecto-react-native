@@ -43,7 +43,7 @@ export default class BuscadorUsuarios extends Component {
             } else {
               this.setState({
                 resultadosDeBusqueda: [], 
-                mensaje: `Resultados de búsqueda para ${text}`
+                mensaje: `No hay resultados de búsqueda para ${text}`
             })
             } 
           } else {
@@ -57,8 +57,9 @@ export default class BuscadorUsuarios extends Component {
 
   render() {
     return (
-      <View>
-        <Text>{this.state.mensaje}</Text>
+      <View style={styles.screen}>
+        <Text style={styles.titulo}>Buscador de Usuarios</Text>
+        <Text style={styles.subtitulo}>{this.state.mensaje}</Text>
         <TextInput
             style={styles.input}
             placeholder='Busque un usuario'
@@ -66,10 +67,13 @@ export default class BuscadorUsuarios extends Component {
             onChangeText={(text) => this.filtrar(text)}
             value={this.state.buscado}
         />
-          <FlatList 
+          <FlatList style={styles.usuarios}
             data={this.state.resultadosDeBusqueda}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={ ({item}) => <Text>{item.data.username}</Text>}
+            renderItem={ ({item}) =>  <View style={styles.usuario}>
+                                        <Text>{item.data.username}</Text>
+                                        <Text>{item.data.owner}</Text>
+                                      </View>}
           />
         
       </View>
@@ -78,9 +82,44 @@ export default class BuscadorUsuarios extends Component {
 }
 
 let styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems:'center', 
+    backgroundColor: '#ffbae4',
+  },
+
+  titulo: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 25,
+    margin: 15,
+  },
+
+  subtitulo: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom: 5,
+  },
+
   input: {
-      borderWidth: 1,
-      borderColor: 'green',
-      marginBottom: 10
-  }
+    width: '80%',
+    backgroundColor: 'white',
+    borderColor: '#ffd8f0',
+    borderWidth: 2,
+    padding: 5,
+    marginBottom: 10,
+  },
+
+  usuarios: {
+    width: '80%',
+    margin: 5,
+  },
+
+  usuario: {
+    backgroundColor: '#ffd8f0',
+    padding: 10,
+    margin: 5,
+  },
 })

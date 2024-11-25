@@ -34,8 +34,8 @@ export default class TodosLosPosts extends Component {
     
     render() {
     return (
-      <View style={styles.listPost}>
-        <Text> Posts </Text>
+      <View style={styles.container}>
+        <Text style={styles.subtitulo}>Todos los posteos</Text>
         <FlatList
             data={this.state.todosLosPosts}
             keyExtractor={ (item) => item.id.toString()}
@@ -46,7 +46,15 @@ export default class TodosLosPosts extends Component {
   }
 }
 const styles = StyleSheet.create({
-    listPost:{
-      flex: 1
-    }
+    container:{
+      flex: 1,
+      width: '90%',
+    },
+
+    subtitulo: {
+      color: 'white',
+      fontWeight: 'bold',
+      fontSize: 17,
+      margin: 10,
+    },
   })

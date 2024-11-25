@@ -45,9 +45,7 @@ export default class FormularioRegister extends Component {
                 db.collection('users').add({
                     owner: auth.currentUser.email,
                     createdAt: Date.now(),
-                    bio: '',
                     username: username,
-                    imagenPerfil: '',
                 })
                 .then(
                     () => this.props.navigation.navigate('login')

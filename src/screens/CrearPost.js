@@ -6,36 +6,41 @@ export default class CrearPost extends Component {
     constructor(props){
         super(props)
     }
-irAInicio(){
 
-}
     render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.titulo}> Crear Post </Text>
-        <FormularioPost navigation={this.props.navigation}/>
+      <View style={styles.screen}>
+        <View style={styles.container}>
+          <Text style={styles.titulo}> Crear Post </Text>
+          <FormularioPost navigation={this.props.navigation}/>
+        </View>
       </View>
     )
   }
 }
 
 let styles = StyleSheet.create({
-  container: {
-    marginTop: 150,
+  screen: {
+    flex: 1,
     justifyContent: 'center',
-    alignSelf: 'center', 
-    borderColor: '#ccc',
+    alignItems:'center', 
+    backgroundColor: '#ffbae4',
+  },
+
+  container: {
+    justifyContent: 'center',
+    alignItems:'center', 
+    backgroundColor: 'white',
+    borderColor: '#ffd8f0',
     borderWidth: 3,
     borderRadius: 5,
-    alignItems:'center',
-    backgroundColor: 'beige',
-    width: 500,
-    height: 400
-    
+    padding: 15,
+    width: '80%',
   },
+
   titulo: {
     fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 25,
+    margin: 10,
   },
 })

@@ -17,19 +17,19 @@ export default class NavegacionAnidada extends Component {
       <Tab.Navigator>
         <Tab.Screen name='Home' component={Inicio} 
             options={{headerShown: false,
-                        tabBarIcon: () => <FontAwesome name="home" size={24} color="black" />,
+                        tabBarIcon: () => <FontAwesome name="home" size={24} color="#ffbae4" />,
             }} />
         <Tab.Screen name='Buscador' component={BuscadorUsuarios} 
             options={{headerShown: false, 
-                        tabBarIcon: () => <FontAwesome name="search" size={24} color="black" />,
+                        tabBarIcon: () => <FontAwesome name="search" size={24} color="#ffbae4" />,
             }} />
         <Tab.Screen name='Post' component={CrearPost} 
             options={{headerShown: false, 
-                        tabBarIcon: () => <FontAwesome name="plus-square-o" size={24} color="black" />,
+                        tabBarIcon: () => <FontAwesome name="plus-square-o" size={24} color="#ffbae4" />,
             }} />
         <Tab.Screen name='Perfil' component={Perfil} 
             options={{headerShown: false, 
-                        tabBarIcon: () => <FontAwesome name="user" size={24} color="black" />,
+                        tabBarIcon: () => <FontAwesome name="user" size={24} color="#ffbae4" />,
             }} />
       </Tab.Navigator>
     )

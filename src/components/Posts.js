@@ -13,6 +13,18 @@ export default class Posts extends Component {
         }
     }
 
+    componentDidMount(){
+        {
+            this.props.item.data.arrLikes.includes(auth.currentUser.email)
+            ?
+            this.setState({
+                like: true
+            })
+            :
+            ""
+        }
+    }
+
     darLike(idDocumento){
         db
         .collection('posts')
@@ -42,30 +54,41 @@ export default class Posts extends Component {
     }
 
     render() {
+        const fechaDelPost = new Date(this.props.item.data.createdAt)
+        console.log(fechaDelPost)
+        console.log(this.props.item.data.arrLikes.length)
+        const fecha = fechaDelPost.toLocaleDateString()
     return (
       <View style={styles.container}>
         
         <Text style={styles.owner}> {this.props.item.data.owner} </Text>
-        <Text style={styles.content}> {this.props.item.data.username} </Text>
         <Text style={styles.content}> {this.props.item.data.post} </Text>
+        <Text style={styles.info}> {fecha} </Text>
         
+        {
+            this.props.item.data.arrLikes.length > 0
+            ?
+            <Text style={styles.info}> Cantidad de likes: {this.props.item.data.arrLikes.length} </Text>
+            :
+            <Text style={styles.info}> Cantidad de likes: 0 </Text>
+        }
+
         {
             this.state.like 
             ?
-            <TouchableOpacity
-            onPress={ () => this.sacarLike(this.props.item.id)}
-            style={styles.heartButton}
-            >
-                <AntDesign name="heart" size={30} color="red" />
+                <TouchableOpacity style={styles.heartButton}
+                    onPress={ () => this.sacarLike(this.props.item.id)} >
+                    
+                    <AntDesign name="heart" size={30} color="#ffbae4" />
 
-            </TouchableOpacity>
+                </TouchableOpacity>
             :
-            <TouchableOpacity
-            onPress={ () => this.darLike(this.props.item.id)}
-            style={styles.heartButton}
-            >
-                <AntDesign name="hearto" size={30} color="gray" />
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.heartButton}
+                    onPress={ () => this.darLike(this.props.item.id)} >
+                        
+                    <AntDesign name="hearto" size={30} color="#ffbae4" />
+
+                </TouchableOpacity>
         }
 
       </View>
@@ -75,23 +98,32 @@ export default class Posts extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
-        padding: 10,
-        borderColor: '#ccc',
-        borderWidth: 1,
+        backgroundColor: 'white',
+        borderColor: '#ffd8f0',
+        borderWidth: 3,
         borderRadius: 5,
+        margin: 5,
+        padding: 10,
     },
+
     owner: {
         fontWeight: 'bold',
-        fontSize: 16,
-        marginBottom: 5,
+        fontSize: 15,
+        marginBottom: 2,
     },
+
     content: {
-        fontSize: 14,
+        fontSize: 17,
         marginBottom: 10,
     },
+
+    info: {
+        fontSize: 12,
+        marginBottom: 5,
+    },
+
     heartButton: {
         alignSelf: 'flex-start',
-        marginTop: 10,
+        margin: 10,
     },
 });
