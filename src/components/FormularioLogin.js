@@ -79,7 +79,7 @@ export default class FormularioLogin extends Component {
             <TouchableOpacity
                 onPress={() => this.submit(this.state.email, this.state.password)}
             >
-                <Text>Login</Text>
+                <Text style={styles.boton}>Login</Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -110,5 +110,16 @@ let styles = StyleSheet.create({
     subtitulo:{
         fontStyle: 'italic',
         padding: 2
-      }
+      },
+      boton:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'beige',
+        borderRadius:2,
+        padding:2,
+        margin:2,
+        borderColor:'#ccc',
+        borderWidth:3
+    }
 })

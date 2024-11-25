@@ -92,10 +92,10 @@ export default class FormularioRegister extends Component {
                 <TouchableOpacity
                 onPress={() => this.submit(this.state.email, this.state.username, this.state.password)}
                 >
-                <Text></Text>
+                <Text style={styles.boton}>Register</Text>
                 </TouchableOpacity>
                 :
-                <Text></Text>
+                <Text style={styles.boton}>Register</Text>
             }
         </View>
       </View>
@@ -126,5 +126,16 @@ let styles = StyleSheet.create({
     subtitulo:{
         fontStyle: 'italic',
         padding: 2
-      }
+      },
+    boton:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        backgroundColor: 'beige',
+        borderRadius:2,
+        padding:2,
+        margin:2,
+        borderColor:'#ccc',
+        borderWidth:3
+    }
 })
