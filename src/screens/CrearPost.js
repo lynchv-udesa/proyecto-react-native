@@ -6,12 +6,14 @@ export default class CrearPost extends Component {
     constructor(props){
         super(props)
     }
+irAInicio(){
 
+}
     render() {
     return (
       <View style={styles.container}>
         <Text style={styles.titulo}> Crear Post </Text>
-        <FormularioPost/>
+        <FormularioPost navigation={this.props.navigation}/>
       </View>
     )
   }

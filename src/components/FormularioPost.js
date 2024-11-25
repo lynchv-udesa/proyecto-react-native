@@ -64,7 +64,7 @@ export default class FormularioPost extends Component {
             value={this.state.post}
           />
 
-          {this.state.error !== '' && this.state.post !== '' 
+          {this.state.error == '' && this.state.post !== '' 
             ? 
               <TouchableOpacity onPress={() => this.submit(this.state.post)}>
                 <Text style={styles.button}> Postear </Text>
