@@ -3,6 +3,7 @@ import { Text, View } from 'react-native'
 import { db, auth } from '../firebase/config'
 import Posts from '../components/Posts'
 import { FlatList } from 'react-native-web'
+import { StyleSheet } from 'react-native'
 
 export default class TodosLosPosts extends Component {
     
@@ -33,7 +34,7 @@ export default class TodosLosPosts extends Component {
     
     render() {
     return (
-      <View>
+      <View style={styles.listPost}>
         <Text> Posts </Text>
         <FlatList
             data={this.state.todosLosPosts}
@@ -44,3 +45,8 @@ export default class TodosLosPosts extends Component {
     )
   }
 }
+const styles = StyleSheet.create({
+    listPost:{
+      flex: 1
+    }
+  })
