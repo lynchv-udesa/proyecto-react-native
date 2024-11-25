@@ -70,7 +70,9 @@ export default class FormularioPost extends Component {
                 <Text style={styles.button}> Postear </Text>
               </TouchableOpacity>
             : 
-              <Text> Postear </Text>
+            <TouchableOpacity >
+                <Text style={styles.button}> Postear </Text>
+              </TouchableOpacity>
           }
 
         </View>
