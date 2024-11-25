@@ -15,7 +15,7 @@ export default class BuscadorUsuarios extends Component {
 
     componentDidMount(){
         db.collection('users').onSnapshot((docs) => {
-            let todosLosUsers = []
+            let todosLosUsers = [];
 
             docs.forEach((doc) => todosLosUsers.push({
                 id: doc.id,
@@ -32,21 +32,27 @@ export default class BuscadorUsuarios extends Component {
       this.setState({ buscado: text })
 
       if(text !== ''){
-        let resultados = this.state.users.filter((elm) => elm.data.username.includes(text))
+        let resultados = this.state.users.filter((elm) => elm.data.username.toLowerCase().includes(text.toLowerCase()))
               console.log(text)
             
-            { resultados.length > 0
-              ?
-                this.setState({
-                    resultadosDeBusqueda: resultados, 
-                    mensaje: `Resultados de búsqueda para ${this.state.buscado}`
-                })
-              :
-                this.setState({
-                    mensaje: `No hay resultados de búsqueda para ${this.state.buscado}`
-                })
-            }       
-        }
+            if(resultados.length > 0){
+              this.setState({
+                resultadosDeBusqueda: resultados, 
+                mensaje: `Resultados de búsqueda para ${text}`
+            })
+            } else {
+              this.setState({
+                resultadosDeBusqueda: [], 
+                mensaje: `Resultados de búsqueda para ${text}`
+            })
+            } 
+          } else {
+            this.setState({
+              resultadosDeBusqueda: [], 
+              mensaje: ''
+          })
+          }      
+        
     }
 
   render() {
