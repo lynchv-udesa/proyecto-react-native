@@ -36,7 +36,7 @@ export default class FormularioPost extends Component {
       db.collection('posts')
         .add(postData)
         .then(() => {
-          this.props.navigation.navigate('Inicio');
+          this.props.navigation.navigate('Home');
           this.setState({post: '', error: ''})
         })
         .catch((err) => console.error('Error al guardar en la base de datos:', err));
