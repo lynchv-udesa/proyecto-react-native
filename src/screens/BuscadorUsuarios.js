@@ -33,7 +33,6 @@ export default class BuscadorUsuarios extends Component {
 
       if(text !== ''){
         let resultados = this.state.users.filter((elm) => elm.data.username.toLowerCase().includes(text.toLowerCase()))
-              console.log(text)
             
             if(resultados.length > 0){
               this.setState({
@@ -70,10 +69,11 @@ export default class BuscadorUsuarios extends Component {
           <FlatList style={styles.usuarios}
             data={this.state.resultadosDeBusqueda}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={ ({item}) =>  <View style={styles.usuario}>
-                                        <Text>{item.data.username}</Text>
-                                        <Text>{item.data.owner}</Text>
-                                      </View>}
+            renderItem={ ({item}) =>  
+              <View style={styles.usuario}>
+                <Text>{item.data.username}</Text>
+                <Text>{item.data.owner}</Text>
+              </View>}
           />
         
       </View>

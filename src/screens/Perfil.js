@@ -9,7 +9,8 @@ export default class Perfil extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userInfo: []
+      userInfo: [],
+      userPostsInfo: []
     }
   }
 
@@ -34,6 +35,7 @@ export default class Perfil extends Component {
         }, () => console.log('Mi estado', this.state))
 
       })
+
     db
       .collection('posts')
       .where('owner', '==', auth.currentUser.email)
@@ -82,7 +84,7 @@ export default class Perfil extends Component {
         </TouchableOpacity>
 
         <View style={styles.container}>
-            <Text style={styles.subtitulo}>Mis posteos</Text>
+            <Text style={styles.subtitulo}>Mis posteos: {this.state.userPostsInfo.length} posteos</Text>
             <FlatList
                 data={this.state.userPostsInfo}
                 keyExtractor={ (item) => item.id.toString()}

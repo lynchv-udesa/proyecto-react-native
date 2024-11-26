@@ -66,8 +66,6 @@ export default class Posts extends Component {
 
     render() {
         const fechaDelPost = new Date(this.props.item.data.createdAt)
-        console.log(fechaDelPost)
-        console.log(this.props.item.data.arrLikes.length)
         const fecha = fechaDelPost.toLocaleDateString()
     return (
       <View style={styles.container}>
@@ -137,12 +135,12 @@ const styles = StyleSheet.create({
     },
 
     content: {
-        fontSize: 17,
+        fontSize: 18,
         marginBottom: 10,
     },
 
     info: {
-        fontSize: 12,
+        fontSize: 13,
         marginBottom: 5,
     },
 
