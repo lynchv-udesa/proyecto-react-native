@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Login from '../screens/Login'
 import Register from '../screens/Register'
+import Principal from '../screens/Principal'
 
 import NavegacionAnidada from './NavegacionAnidada'
 
@@ -12,6 +13,7 @@ export default class NavegacionPrincipal extends Component {
   render() {
     return (
       <Stack.Navigator>
+        <Stack.Screen name='principal' component={Principal} options={{headerShown: false}} />
         <Stack.Screen name='login' component={Login} options={{headerShown: false}} />
         <Stack.Screen name='register' component={Register} options={{headerShown: false}} />
         <Stack.Screen name='anidada' component={NavegacionAnidada} options={{headerShown: false}} />

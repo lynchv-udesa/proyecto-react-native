@@ -8,8 +8,8 @@ export default class Inicio extends Component {
     return (
       <View style={styles.screen}>
         <Text style={styles.usuario}>{auth.currentUser.email}</Text>
-        <Text style={styles.titulo}>Miautter</Text>
         <Image source={require('../../assets/img/logomiautter1.png')} style={styles.image} resizeMode='contain' />  
+        <Text style={styles.titulo}>Miautter</Text>
         <TodosLosPosts/> 
       </View>
     )
@@ -36,13 +36,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 30,
-    margin: 15,
+    marginBottom: 20,
   },
 
   image: {
     width: '50%',
     height: 120,
     padding: 0,
-    marginBottom: 5,
+    marginTop: 15,
   },
 })

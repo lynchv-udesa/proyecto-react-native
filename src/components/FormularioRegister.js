@@ -54,6 +54,7 @@ export default class FormularioRegister extends Component {
         })
         .catch(err => {
             if(err.code === "auth/email-already-in-use"){
+                console.log(err),
                 this.setState({error: "Este email ya está en uso"})
             }
         })

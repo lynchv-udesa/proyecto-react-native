@@ -41,7 +41,7 @@ export default class FormularioLogin extends Component {
             const error = JSON.parse(err.message)
             console.log('error parseado', error)
             if(error.error.message === 'INVALID_LOGIN_CREDENTIALS'){ // Si pongo un mail valido pero la contraseña incorrecta, me sigue diciendo que el email no está registrado
-                this.setState({error: "Este email no está registrado"})
+                this.setState({error: "El email o la contraseña no son correctos"}) // Me tira el mismo error ('INVALID_LOGIN_CREDENTIALS') para ambos casos. 
             }
         })
     }

@@ -1,10 +1,23 @@
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { Component } from 'react'
-import FormularioRegister from '../components/FormularioRegister'
+import { auth, db } from '../firebase/config'
 
-export default class Register extends Component {
+export default class Login extends Component {
     constructor(props){
         super(props)
+    }
+
+    componentDidMount(){
+        auth
+        .onAuthStateChanged(user => {
+            if(user){
+                this.props.navigation.navigate('anidada')
+            } 
+        })
+    }
+
+    irARegister(){
+        this.props.navigation.navigate('register')
     }
 
     irALogin(){
@@ -16,29 +29,27 @@ export default class Register extends Component {
       <View style={styles.screen}>
         <View style={styles.container}>
           <Image source={require('../../assets/img/logomiautter1.png')} style={styles.image} resizeMode='contain' />
-          <Text style={styles.titulo}>Register</Text>
-          <FormularioRegister navigation={this.props.navigation} />
-          <Text>¿Ya estás registrado?</Text>
+          <Text style={styles.titulo}>Miautter</Text>
+          <Text>¿Estás registrado?</Text>
           <TouchableOpacity onPress={() => this.irALogin()}>
               <Text style={styles.ir}>Logueate</Text>
+          </TouchableOpacity>
+          <Text>¿No estás registrado?</Text>
+          <TouchableOpacity onPress={() => this.irARegister()}>
+              <Text style={styles.ir}>Registrate</Text>
           </TouchableOpacity>
         </View>
       </View>
     )
   }
 }
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center',
     alignItems:'center', 
     backgroundColor: 'white',
-  },
-
-  image: {
-    width: '50%',
-    height: 120,
-    padding: 0,
   },
 
   container: {
@@ -54,13 +65,19 @@ const styles = StyleSheet.create({
   titulo: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 25,
-    marginBottom: 5,
+    fontSize: 30,
+    marginBottom: 20,
+  },
+
+  image: {
+    width: '80%',
+    height: 120,
+    marginTop: 15,
   },
 
   ir: {
     fontWeight: 'bold',
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 15,
   }
 })

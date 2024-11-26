@@ -7,10 +7,6 @@ export default class Login extends Component {
         super(props)
     }
 
-    componentDidMount(){
-        console.log('Props de la screen', this.props)
-    }
-
     irARegister(){
         this.props.navigation.navigate('register')
     }
@@ -57,6 +53,7 @@ const styles = StyleSheet.create({
   },
 
   titulo: {
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 25,
     marginBottom: 5,
