@@ -52,6 +52,17 @@ export default class Posts extends Component {
             })
         })
     }
+    eliminar(idDocumento){
+        db
+        .collection('posts')
+        .doc(idDocumento)
+        .delete()
+        .then( () => 
+            console.log('Post eliminado')
+        )
+        .catch((err) => console.error('Error al eliminar post:', err));
+    }
+
 
     render() {
         const fechaDelPost = new Date(this.props.item.data.createdAt)
@@ -90,6 +101,19 @@ export default class Posts extends Component {
 
                 </TouchableOpacity>
         }
+           {
+            auth.currentUser.email === this.props.item.data.owner
+            ?
+            <TouchableOpacity style={styles.heartButton}
+                    onPress={ () => this.eliminar(this.props.item.id)} >
+                        
+                    <Text style={styles.eliminar}>Eliminar posteo</Text>
+
+            </TouchableOpacity>
+            :
+            null
+        }
+
 
       </View>
     )
